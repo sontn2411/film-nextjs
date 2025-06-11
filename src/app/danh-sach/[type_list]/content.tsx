@@ -72,8 +72,6 @@ const ContentTypeList = ({ type_list, page }: ContentTypeListProps) => {
     router.push(`?${newQuery}`, { scroll: false })
   }
 
-  // console.log('====ssadas====', data)
-
   return (
     <div>
       {/* Backdrop */}
