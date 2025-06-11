@@ -20,6 +20,7 @@ interface RequestDataFilmList {
   type_list: string
   category: string
   country: string
+  year: string
 }
 
 const fetchDataFilmList = async ({
@@ -27,11 +28,12 @@ const fetchDataFilmList = async ({
   type_list,
   category,
   country,
+  year,
 }: RequestDataFilmList) => {
   const res = await axios.get(
     `/api/danh-sach/${type_list}?page=${page}${
       category ? `&category=${category}` : ''
-    }&country=${country}`
+    }&country=${country}${year ? `&year=${year}` : ''}`
   )
 
   return res.data?.data ?? []
@@ -42,10 +44,12 @@ export const useGetDataFilmList = ({
   type_list,
   category,
   country,
+  year,
 }: RequestDataFilmList) => {
   return useQuery({
-    queryKey: ['danh-sach', page, type_list, category, country],
-    queryFn: () => fetchDataFilmList({ page, type_list, category, country }),
+    queryKey: ['danh-sach', page, type_list, category, country, year],
+    queryFn: () =>
+      fetchDataFilmList({ page, type_list, category, country, year }),
     staleTime: 5 * 60 * 1000,
   })
 }

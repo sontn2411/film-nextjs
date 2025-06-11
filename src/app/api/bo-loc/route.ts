@@ -55,12 +55,18 @@ export async function GET() {
       slug: 'phim-long-tieng',
     },
   ]
+  const currentYear = new Date().getFullYear()
+  const dataYear = Array.from({ length: currentYear - 2015 + 1 }, (_, i) => ({
+    id: i + 1,
+    name: 2015 + i,
+  })).reverse()
 
   return new Response(
     JSON.stringify({
       category: [{ id: 1, name: 'Tất cả', slug: '' }, ...dataCategory],
       country: dataResCountry,
       type: dataType,
+      years: dataYear,
     }),
     {
       status: 200,

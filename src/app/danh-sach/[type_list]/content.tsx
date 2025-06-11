@@ -16,6 +16,7 @@ const ContentTypeList = ({ type_list, page }: ContentTypeListProps) => {
 
   const category = searchParams.get('category')
   const country = searchParams.get('country')
+  const year = searchParams.get('year') || '2025'
 
   const { data: dataFilter } = useGetDataFilter()
 
@@ -24,9 +25,10 @@ const ContentTypeList = ({ type_list, page }: ContentTypeListProps) => {
     type_list: type_list,
     category: category || '',
     country: country || '',
+    year: year || '',
   })
 
-  const isActive = (groupKey: string, slug: string) => {
+  const isActive = (groupKey: string, slug: string, name: string) => {
     if (groupKey === 'category') {
       if (!category) return slug === ''
       return slug === category
@@ -36,14 +38,20 @@ const ContentTypeList = ({ type_list, page }: ContentTypeListProps) => {
       return slug === country
     }
 
+    if (groupKey === 'years') {
+      return name == year
+    }
+
     if (groupKey === 'type') {
       return slug === type_list
     }
 
     return false
   }
-
-  const handleChangeFilter = (groupKey: string, item: { slug: string }) => {
+  const handleChangeFilter = (
+    groupKey: string,
+    item: { slug: string; name: string }
+  ) => {
     const params = new URLSearchParams(Array.from(searchParams.entries()))
 
     if (groupKey === 'category') {
@@ -66,6 +74,14 @@ const ContentTypeList = ({ type_list, page }: ContentTypeListProps) => {
       const newQuery = params.toString()
       router.push(`${newPath}?${newQuery}`, { scroll: false })
       return
+    }
+
+    if (groupKey === 'years') {
+      if (item.name) {
+        params.set('year', item.name)
+      } else {
+        params.delete('year')
+      }
     }
 
     const newQuery = params.toString()
@@ -101,6 +117,7 @@ const ContentTypeList = ({ type_list, page }: ContentTypeListProps) => {
                   <span className='font-bold text-sm whitespace-nowrap w-32 shrink-0'>
                     {key === 'type' && 'Danh Sách'}
                     {key === 'category' && 'Thể Loại'}
+                    {key === 'years' && 'Năm'}
                     {key === 'country' && 'Quốc Gia'}:
                   </span>
 
@@ -109,7 +126,7 @@ const ContentTypeList = ({ type_list, page }: ContentTypeListProps) => {
                       <li
                         key={item.id ?? `${key}-${index}`}
                         className={`text-sm font-semibold opacity-80 px-2 py-1 border-2 cursor-pointer hover:text-[#FFD875] ${
-                          isActive(key, item.slug)
+                          isActive(key, item.slug, item.name)
                             ? 'border-[#ffffff10] rounded text-[#FFD875]'
                             : 'border-transparent'
                         }`}

@@ -10,12 +10,13 @@ export async function GET(
   const page = searchParams.get('page') ?? '1'
   const category_type = searchParams.get('category')
   const country = searchParams.get('country')
+  const year = searchParams.get('year')
 
   const url =
     `https://phimapi.com/v1/api/danh-sach/${category}` +
     `?page=${page}` +
     (category_type ? `&category=${category_type}` : '') +
-    `&country=${country}&limit=24`
+    `&country=${country}${year ? `&year=${year}` : ''}&limit=24`
 
   try {
     const res = await fetch(url)

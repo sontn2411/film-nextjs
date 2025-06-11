@@ -36,12 +36,15 @@ const DetailFilm = ({
           className='object-cover rounded-lg'
         />
 
-        <div className=' flex flex-col gap-2 w-full'>
+        <div className=' flex flex-col gap-4 w-full'>
           <p className='text-2xl font-semibold'>{name}</p>
           <p className='text-base  text-[#FFD875]'>{origin_name}</p>
-          <ul className='flex gap-2'>
+          <ul className='flex flex-wrap gap-2 w-full'>
             {category.map((item) => (
-              <li key={item.id} className='bg-[#ffffff10] px-4 rounded'>
+              <li
+                key={item.id}
+                className='bg-[#ffffff10] px-4 rounded shrink-0'
+              >
                 <span className='text-xs'>{item.name}</span>
               </li>
             ))}
