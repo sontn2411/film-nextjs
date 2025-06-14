@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 
 const data = [
   {
@@ -29,7 +29,7 @@ const Interested = () => {
         {data.map((item) => (
           <li key={item.id} className='max-w-[250px] w-full'>
             <Link
-              href={item.slug}
+              to={item.slug}
               className='text-white px-4 py-4  h-[110px] flex items-center justify-center rounded-lg cursor-pointer transition '
               style={{ backgroundColor: item.color }}
             >

@@ -7,6 +7,8 @@ export interface filmItemType {
   time: string
   episode_current: string
   slug: string
+  origin_name: string
+  year: string
 }
 
 export interface PaginationType {

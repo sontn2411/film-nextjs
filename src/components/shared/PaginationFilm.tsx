@@ -1,21 +1,20 @@
-'use client'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 interface PaginationFilmProps {
   totalItems: number
 }
 
 const PaginationFilm = ({ totalItems }: PaginationFilmProps) => {
-  const router = useRouter()
-  const searchParams = useSearchParams()
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const currentPage = Number(searchParams.get('page') || '1')
 
   const handleNextPage = () => {
     if (currentPage < totalItems) {
       const params = new URLSearchParams(searchParams.toString())
       params.set('page', String(currentPage + 1))
-      router.push(`?${params.toString()}`)
+      navigate(`?${params.toString()}`)
     }
   }
 
@@ -23,7 +22,7 @@ const PaginationFilm = ({ totalItems }: PaginationFilmProps) => {
     if (currentPage > 1) {
       const params = new URLSearchParams(searchParams.toString())
       params.set('page', String(currentPage - 1))
-      router.push(`?${params.toString()}`)
+      navigate(`?${params.toString()}`)
     }
   }
 

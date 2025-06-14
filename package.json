@@ -1,40 +1,44 @@
 {
-  "name": "film-app",
-  "version": "0.1.0",
+  "name": "film-app-v2",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@radix-ui/react-aspect-ratio": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
-    "@tanstack/react-query": "^5.80.6",
+    "@tailwindcss/vite": "^4.1.10",
+    "@tanstack/react-query": "^5.80.7",
     "axios": "^1.9.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.16.0",
     "hls.js": "^1.6.5",
-    "lucide-react": "^0.513.0",
-    "next": "15.3.3",
+    "lucide-react": "^0.515.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwind-merge": "^3.3.0",
-    "vnetwork-player": "^1.1.36",
-    "zustand": "^5.0.5"
+    "react-router-dom": "^6.30.1",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.10",
+    "vnetwork-player": "^1.1.36"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.3",
-    "tailwindcss": "^4",
+    "@eslint/js": "^9.25.0",
+    "@types/node": "^24.0.1",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react-swc": "^3.9.0",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
     "tw-animate-css": "^1.3.4",
-    "typescript": "^5"
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.30.1",
+    "vite": "^6.3.5"
   }
 }

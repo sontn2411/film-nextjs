@@ -1,5 +1,5 @@
-import { filmItemType } from '@/types/film'
-import FilmItem from './FlimItem'
+import type { filmItemType } from '@/types/film'
+import FlimItem from './FlimItem'
 
 interface ListFilmProps {
   data: filmItemType[]
@@ -12,7 +12,7 @@ const ListFilm = ({ data }: ListFilmProps) => {
         {data &&
           data.map((item: filmItemType) => (
             <li key={item._id} className='w-64'>
-              <FilmItem {...item} />
+              <FlimItem {...item} />
             </li>
           ))}
       </ul>

@@ -1,6 +1,4 @@
-import { categoryItem } from '@/types/film'
-
-import Image from 'next/image'
+import type { categoryItem } from '@/types/film'
 
 interface DetailFilmProps {
   poster_url: string
@@ -28,7 +26,7 @@ const DetailFilm = ({
         style={{ backgroundImage: `url(${thumb_url})` }}
       ></div>
       <div className='flex gap-8 justify-between z-10'>
-        <Image
+        <img
           src={poster_url}
           alt='Photo by Drew Beamer'
           width={150}

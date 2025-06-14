@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
-
-import { filmItemType } from '@/types/film'
-import { AspectRatio } from '@radix-ui/react-aspect-ratio'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import type { filmItemType } from '@/types/film'
+import { AspectRatio } from '../ui/aspect-ratio'
+import { useNavigate } from 'react-router-dom'
 
 interface FilmItemProps extends filmItemType {}
-const FilmItem = ({
+
+const FlimItem = ({
   poster_url,
   name,
   lang,
@@ -15,14 +14,15 @@ const FilmItem = ({
   slug,
 }: FilmItemProps) => {
   const domainImage = 'https://phimimg.com'
-  const router = useRouter()
+
+  const navigate = useNavigate()
 
   const imagSrc = poster_url.includes(domainImage)
     ? poster_url
     : domainImage + '/' + poster_url
 
   const handleNavigate = () => {
-    router.push('/phim/' + slug)
+    navigate('/phim/' + slug)
   }
 
   return (
@@ -31,11 +31,11 @@ const FilmItem = ({
         ratio={4 / 6}
         className='relative bg-muted rounded-lg overflow-hidden'
       >
-        <Image
+        <img
           src={imagSrc}
-          alt='Photo by Drew Beamer'
-          fill
-          className='object-cover rounded-lg'
+          alt={name}
+          className='object-cover w-full h-full rounded-lg'
+          loading='lazy'
         />
         <div className='bg-[#2ca35d] absolute top-0 left-0 text-[12px] font-bold p-1 '>
           <span>{lang}</span>
@@ -52,4 +52,4 @@ const FilmItem = ({
   )
 }
 
-export default FilmItem
+export default FlimItem
