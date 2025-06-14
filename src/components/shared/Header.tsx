@@ -1,6 +1,6 @@
-import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 import SearchFilm from './SearchFilm'
+import { Button } from '../ui/button'
 
 const Header = () => {
   return (

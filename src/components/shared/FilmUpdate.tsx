@@ -1,8 +1,9 @@
 import { useGetDataFilmUpday } from '@/api/query'
 import { useSearchParams } from 'react-router-dom'
 import ListFilm from './ListFilm'
-import LoadingFilm from './LoadingFilm'
+
 import PaginationFilm from './PaginationFilm'
+import LoadingFilm from './LoadingFilm'
 
 const FilmUpdate = () => {
   const [searchParams] = useSearchParams()
